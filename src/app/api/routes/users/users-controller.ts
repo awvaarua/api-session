@@ -15,58 +15,39 @@ export class UsersController extends RestController {
   private static readonly LOGGER: Logger = LoggerFactory.getLogger();
 
   async getAll(req, res, next): Promise<any> {
-    try {
-      let users = await this.usersService.getAll();
-      console.log(users);
-      return this.respond(res, users);
-    } catch (err) {
-      UsersController.LOGGER.error(err);
-      return this.internalServerError(res, err);
-    }
+    const users = await this.usersService.getAll();
+    return this.respond(res, users);
   }
 
-  get(req, res, next): any {
+  async get(req, res, next): Promise<any> {
     return this.respond(res, req.user);
   }
 
-  create(req, res, next): Promise<any> {
+  async create(req, res, next): Promise<any> {
     const user = new User(req.body);
     this.validateModel(user);
-
-    if (user.email === 'andre@andregiannico.com') {
-      this.throwBusinessViolation('BLACKLISTED_EMAIL', 'This email is blacklisted.');
-    }
-
-    return this.usersService.create(user)
-      .then((user: User) => {
-        return this.respond(res, user);
-      });
+    const createdUser = await this.usersService.create(user);
+    return this.respond(res, createdUser);
   }
 
-  update(req, res, next: any): Promise<any> {
-    const userToUpdate: User = (<User> req.user);
+  async update(req, res, next: any): Promise<any> {
+    const userToUpdate: User = <User>req.user;
     userToUpdate.set(req.body);
     this.validateModel(userToUpdate);
-
-    return this.usersService.update(userToUpdate.id, userToUpdate)
-      .then((updatedUser: User) => {
-        return this.respond(res, updatedUser);
-      });
+    const updatedUser = await this.usersService.update(userToUpdate.id, userToUpdate);
+    return this.respond(res, updatedUser);
   }
 
-  delete(req, res, next): Promise<any> {
-    return this.usersService.delete(req.user.id)
-      .then(() => {
-        return this.respondNoContent(res);
-      });
+  async delete(req, res, next): Promise<any> {
+    await this.usersService.delete(req.user.id);
+    return this.respondNoContent(res);
   }
 
-  resolveUser(req, res, next, userId: string): Promise<any> {
-    return this.usersService.get(userId)
-      .then((user: User) => {
-        this.validateResourceFound(user);
-        req.user = user;
-        next();
-      });
+  //  Loads user from userId parameter
+  async resolveUser(req, res, next, userId: number): Promise<any> {
+    const user = await this.usersService.get(userId);
+    this.validateResourceFound(user);
+    req.user = user;
+    next();
   }
 }

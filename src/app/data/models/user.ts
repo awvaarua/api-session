@@ -4,15 +4,16 @@ import { ValidatorError } from '../../common/validation/validator-error';
 import { Validatable } from '../../common/validation/validatable';
 
 export class User extends Model implements Validatable {
-  public firstName: string;
-  public lastName: string;
+
+  public name: string;
   public email: string;
+  public password: string;
 
   constructor(data: any) {
     super(data.id);
-    this.firstName = data.firstName;
-    // this.lastName = data.lastName;
+    this.name = data.name;
     this.email = data.email;
+    this.password = data.password;
   }
 
   validate(): Array<ValidatorError> {
@@ -24,14 +25,14 @@ export class User extends Model implements Validatable {
   toJSON(): any {
     return {
       id: this.id,
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email
+      name: this.name,
+      email: this.email,
+      password: this.password
     };
   }
 
   static readonly MODEL_CONSTRAINTS: any = {
-    firstName: {
+    name: {
       required: true,
       notNull: true,
       length: {
@@ -39,9 +40,13 @@ export class User extends Model implements Validatable {
         message: 'must be at least 2 characters.'
       }
     },
-    lastName: {
+    password: {
       required: true,
-      notNull: true
+      notNull: true,
+      length: {
+        minimum: 2,
+        message: 'must be at least 2 characters.'
+      }
     },
     email: {
       required: true,

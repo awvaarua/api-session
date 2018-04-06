@@ -12,6 +12,7 @@ export class UsersRouter extends RestRouter {
   }
 
   initRoutes() {
+    //  When recive a userId param, automatically load the user
     this.router.param('userId', this.wrapParamFn(this.usersController, this.usersController.resolveUser));
 
     this.router.get('/', this.wrapRouteFn(this.usersController, this.usersController.getAll));

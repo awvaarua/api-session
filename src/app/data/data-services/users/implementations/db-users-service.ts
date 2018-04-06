@@ -21,18 +21,15 @@ export class DbUsersService implements UsersService {
   }
 
   async getAll(): Promise<Array<User>> {
-    return await DbUsersService.DB.any('SELECT * FROM public."user"');
+    const usersData = await DbUsersService.DB.any('SELECT * FROM public."user"');
+    let users: Array<User> = [];
+    usersData.map((user) => users.push(new User(user)));
+    return users;
   };
 
-  get(id: string): Promise<User> {
-
-    DbUsersService.DB.one('SELECT * FROM public."user" WHERE ')
-      .then(function (data) {
-        return Promise.resolve(new User(data));
-      })
-      .catch(function (error) {
-      });
-    return Promise.resolve(null);
+  async get(id: number): Promise<User> {
+    const userData = await DbUsersService.DB.oneOrNone('SELECT * FROM public."user" WHERE id = $1', [id]);
+    return userData ? new User(userData) : null;
   }
 
   create(user: User): Promise<User> {

@@ -19,8 +19,8 @@ export class MockUsersService implements UsersService {
     return Promise.resolve(users);
   };
 
-  get(id: string): Promise<User> {
-    let user = this.userMap.get(id);
+  get(id: number): Promise<User> {
+    let user = this.userMap.get(id.toString());
 
     if (user == null) { return Promise.resolve(null); }
 
