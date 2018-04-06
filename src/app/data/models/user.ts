@@ -11,7 +11,7 @@ export class User extends Model implements Validatable {
   constructor(data: any) {
     super(data.id);
     this.firstName = data.firstName;
-    this.lastName = data.lastName;
+    // this.lastName = data.lastName;
     this.email = data.email;
   }
 
