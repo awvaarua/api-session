@@ -17,6 +17,7 @@ export class UsersController extends RestController {
   async getAll(req, res, next): Promise<any> {
     try {
       let users = await this.usersService.getAll();
+      console.log(users);
       return this.respond(res, users);
     } catch (err) {
       UsersController.LOGGER.error(err);

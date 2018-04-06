@@ -5,11 +5,11 @@ import * as pgPromise from 'pg-promise';
 
 const pgp: IMain = pgPromise();
 const config = {
-  host: 'pgc.development.corp.logitravelgroup.com',
+  host: 'localhost',
   port: 5432,
-  database: 'calculator',
-  user: 'sebastian.sanso',
-  password: 'Serviette90***'
+  database: 'test',
+  user: 'postgres',
+  password: 'fura4468AB'
 };
 
 export class DbUsersService implements UsersService {
@@ -17,22 +17,22 @@ export class DbUsersService implements UsersService {
   private static readonly DB: IDatabase<any> = pgp(config);
 
   constructor() {
-    
+
   }
 
-  getAll(): Promise<Array<User>> {
-    throw "NotImp";
+  async getAll(): Promise<Array<User>> {
+    return await DbUsersService.DB.any('SELECT * FROM public."user"');
   };
 
   get(id: string): Promise<User> {
 
-    DbUsersService.DB.one('SELECT id, "firstName", email FROM "user" where id = 1;')
-      .then(function(data) {
+    DbUsersService.DB.one('SELECT * FROM public."user" WHERE ')
+      .then(function (data) {
         return Promise.resolve(new User(data));
       })
-      .catch(function(error) {
+      .catch(function (error) {
       });
-      return Promise.resolve(null);
+    return Promise.resolve(null);
   }
 
   create(user: User): Promise<User> {
