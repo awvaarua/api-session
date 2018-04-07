@@ -7,13 +7,11 @@ export class User extends Model implements Validatable {
 
   public name: string;
   public email: string;
-  public password: string;
 
   constructor(data: any) {
     super(data.id);
     this.name = data.name;
     this.email = data.email;
-    this.password = data.password;
   }
 
   validate(): Array<ValidatorError> {
@@ -26,8 +24,7 @@ export class User extends Model implements Validatable {
     return {
       id: this.id,
       name: this.name,
-      email: this.email,
-      password: this.password
+      email: this.email
     };
   }
 

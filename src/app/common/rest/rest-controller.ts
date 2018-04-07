@@ -23,6 +23,12 @@ export class RestController {
     return res.status(statusCode).json(this.respond);
   }
 
+  unauthorized(res: Response, item: any, statusCode: number = 401): Response {
+    console.log(item);
+    const response = new RestResponse(null, item);
+    return res.status(statusCode).json(response.toJSON());
+  }
+
   validateModel(model: Validatable): void {
     const validatorErrors: Array<ValidatorError> = model.validate();
     this.throwValidatorErrors(validatorErrors);

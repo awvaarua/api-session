@@ -4,6 +4,7 @@ export interface UsersService {
   getAll(): Promise<Array<User>>;
   create(user: User): Promise<User>;
   get(id: number): Promise<User>;
+  getByNameAndPass(name: string, password: string): Promise<User>;
   update(id: string, user: User): Promise<User>;
   delete(id: string): Promise<void>;
 }

@@ -23,6 +23,11 @@ export class DbUsersService implements UsersService {
     return userData ? new User(userData) : null;
   }
 
+  async getByNameAndPass(name: string, password: string): Promise<User> {
+    const userData = await this.DB.oneOrNone('SELECT * FROM public."user" WHERE name = $1 AND password = $2', [name, password]);
+    return userData ? new User(userData) : null;
+  }
+
   create(user: User): Promise<User> {
     throw "NotImp";
   }

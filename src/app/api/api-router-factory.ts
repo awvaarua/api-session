@@ -18,7 +18,7 @@ export class ApiRouterFactory {
     const router: Router = express.Router();
 
     const usersRouter: Router = new UsersRouter(services.usersService).router;
-    const sessionRouter: Router = new SessionRouter().router;
+    const sessionRouter: Router = new SessionRouter(services.usersService, services.tokensService).router;
 
     ApiRouterFactory.LOGGER.info('Mounting users route');
     router.use('/users', usersRouter);

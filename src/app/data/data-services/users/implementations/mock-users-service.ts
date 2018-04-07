@@ -27,6 +27,10 @@ export class MockUsersService implements UsersService {
     return Promise.resolve(user);
   }
 
+  getByNameAndPass(name: string, password: string): Promise<User> {
+    return Promise.resolve(null);
+  }
+
   create(user: User): Promise<User> {
     const newUserId = ++this.maxUserId;
     user.id = newUserId.toString();
