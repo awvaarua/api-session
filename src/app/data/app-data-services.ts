@@ -1,6 +1,6 @@
 import { UsersService } from './data-services/users/users-service';
 import { DbUsersService } from './data-services/users/implementations/db-users-service';
-import { MOCK_USERS } from './mock-data/mock-users';
+import { PostgreConnection } from '../conecctions/postgre-connection';
 
 export class AppDataServices {
   public usersService: UsersService;
@@ -12,6 +12,6 @@ export class AppDataServices {
   }
 
   private initMockDataServices() {
-    this.usersService = new DbUsersService();
+    this.usersService = new DbUsersService(PostgreConnection.DB);
   }
 }

@@ -3,32 +3,23 @@ import { UsersService } from '../users-service';
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
 
-const pgp: IMain = pgPromise();
-const config = {
-  host: 'localhost',
-  port: 5432,
-  database: 'test',
-  user: 'postgres',
-  password: 'fura4468AB'
-};
-
 export class DbUsersService implements UsersService {
 
-  private static readonly DB: IDatabase<any> = pgp(config);
+  private readonly DB: IDatabase<any>;
 
-  constructor() {
-
+  constructor(db: IDatabase<any>) {
+    this.DB = db;
   }
 
   async getAll(): Promise<Array<User>> {
-    const usersData = await DbUsersService.DB.any('SELECT * FROM public."user"');
+    const usersData = await this.DB.any('SELECT * FROM public."user"');
     let users: Array<User> = [];
     usersData.map((user) => users.push(new User(user)));
     return users;
   };
 
   async get(id: number): Promise<User> {
-    const userData = await DbUsersService.DB.oneOrNone('SELECT * FROM public."user" WHERE id = $1', [id]);
+    const userData = await this.DB.oneOrNone('SELECT * FROM public."user" WHERE id = $1', [id]);
     return userData ? new User(userData) : null;
   }
 
