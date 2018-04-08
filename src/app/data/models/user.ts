@@ -37,14 +37,6 @@ export class User extends Model implements Validatable {
         message: 'must be at least 2 characters.'
       }
     },
-    password: {
-      required: true,
-      notNull: true,
-      length: {
-        minimum: 2,
-        message: 'must be at least 2 characters.'
-      }
-    },
     email: {
       required: true,
       notNull: true,

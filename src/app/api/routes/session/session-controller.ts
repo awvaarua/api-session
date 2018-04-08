@@ -11,7 +11,7 @@ export class SessionController extends RestController {
     }
 
     async create(req, res, next): Promise<any> {
-        const user = await this.usersService.getByNameAndPass(req.body.user, req.body.password);
+        const user = await this.usersService.getByName(req.body.user, req.body.password);
         if (!user) return this.unauthorized(res, 'bad_user_or_password');
         return this.respond(res, await this.tokensService.create(user));
     }

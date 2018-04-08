@@ -2,6 +2,8 @@ import { User } from '../../../models/user';
 import { UsersService } from '../users-service';
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
+import { UserPassword } from '../../../models/user-password';
+import { BcryptUtils } from '../../../../utils/bcrypt-utils';
 
 export class DbUsersService implements UsersService {
 
@@ -23,13 +25,16 @@ export class DbUsersService implements UsersService {
     return userData ? new User(userData) : null;
   }
 
-  async getByNameAndPass(name: string, password: string): Promise<User> {
-    const userData = await this.DB.oneOrNone('SELECT * FROM public."user" WHERE name = $1 AND password = $2', [name, password]);
-    return userData ? new User(userData) : null;
+  async getByName(name: string, password: string): Promise<User> {
+    const userData = await this.DB.oneOrNone('SELECT * FROM public."user" WHERE name = $1', [name]);
+    if (!userData) return null;
+    return await BcryptUtils.compare(password, userData.password) ? new User(userData) : null;
   }
 
-  create(user: User): Promise<User> {
-    throw "NotImp";
+  async create(user: UserPassword): Promise<User> {
+    user.password = await BcryptUtils.hash(user.password);
+    const userData = await this.DB.one('INSERT INTO public."user"(name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email;', [user.name, user.email, user.password]);
+    return userData ? new User(userData) : null;
   }
 
   update(id: string, user: User): Promise<User> {

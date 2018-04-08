@@ -2,6 +2,7 @@ import { User } from '../../../data/models/user';
 import { UsersService } from '../../../data/data-services/users/users-service';
 import { RestController } from '../../../common/rest/rest-controller';
 import { LoggerFactory, Logger } from '../../../common/logging/logger-factory';
+import { UserPassword } from '../../../data/models/user-password';
 
 export class UsersController extends RestController {
 
@@ -24,7 +25,7 @@ export class UsersController extends RestController {
   }
 
   async create(req, res, next): Promise<any> {
-    const user = new User(req.body);
+    const user = new UserPassword(req.body);
     this.validateModel(user);
     const createdUser = await this.usersService.create(user);
     return this.respond(res, createdUser);

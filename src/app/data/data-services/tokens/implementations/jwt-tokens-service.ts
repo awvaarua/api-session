@@ -5,7 +5,8 @@ import { Token } from '../../../models/token';
 import * as JWT from 'jsonwebtoken';
 import * as randtoken from 'rand-token';
 
-const SECRET = '8284224EAEA6F888BD65D958FDE47B1BDA8D971744522D412113F44483';
+const SECRET = 'VWXED;FF&;`sBPpAN3DjWuy9V"*b3rRYOrpG{352T=>j`f`68m7&B3e1L~84wZ(';
+const SECRET_REFRESH = '%qA,rv!sul;s7oOX$q7Um#;p;u[2.BR,v}e|Jo.bG@NN`XZGwj`Abnd!l+W[vQ{';
 
 export class JwtTokensService implements TokensService {
 
@@ -14,8 +15,9 @@ export class JwtTokensService implements TokensService {
 
     async create(user: User): Promise<Token> {
         const accesToken = await JWT.sign(user.toJSON(), SECRET, { expiresIn: 300 });
-        console.log(randtoken.uid(256));
-        return new Token(accesToken, randtoken.uid(256), 'bearer');
+        const refreshToken = randtoken.uid(256);
+        //  Save accesToken and expriation time 1 day
+        return new Token(accesToken, refreshToken, 'bearer');
     }
 
 }
