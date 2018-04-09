@@ -7,6 +7,7 @@ import { AppDataServices } from './data/app-data-services';
 import { ExpressAppFactory } from './express-app-factory';
 import { ApiRouterFactory } from './api/api-router-factory';
 import { RestErrorMiddleware } from './common/rest/middleware/rest-error-middleware';
+import { AppManagers } from 'src/app/managers/app-managers';
 
 const LOGGER: Logger = LoggerFactory.getLogger();
 
@@ -16,8 +17,11 @@ const appConfig: AppConfig = new AppConfig(process.env);
 // Create the application data services
 const appServices: AppDataServices = new AppDataServices();
 
+// Create the application manager
+const appManagers: AppManagers = new AppManagers(appServices);
+
 // Create the application router (to be mounted by the express server)
-const apiRouter: Router = ApiRouterFactory.getApiRouter(appServices);
+const apiRouter: Router = ApiRouterFactory.getApiRouter(appServices, appManagers);
 
 // Get the application middleware (to be mounted after the api router)
 const errorMiddleware = [

@@ -5,8 +5,7 @@ import { UsersRouter } from './routes/users/users-router';
 import { SessionRouter } from './routes/session/session-router';
 import { Logger, LoggerFactory } from '../common/logging/logger-factory';
 import { InvalidResourceUrlError } from '../common/rest/errors';
-
-////////////////////
+import { AppManagers } from 'src/app/managers/app-managers';
 
 export class ApiRouterFactory {
 
@@ -14,11 +13,11 @@ export class ApiRouterFactory {
 
   private constructor() {}
 
-  static getApiRouter(services: AppDataServices): Router {
+  static getApiRouter(services: AppDataServices, managers: AppManagers): Router {
     const router: Router = express.Router();
 
     const usersRouter: Router = new UsersRouter(services.usersService).router;
-    const sessionRouter: Router = new SessionRouter(services.usersService, services.tokensService).router;
+    const sessionRouter: Router = new SessionRouter(managers.sessionManager).router;
 
     ApiRouterFactory.LOGGER.info('Mounting users route');
     router.use('/users', usersRouter);
