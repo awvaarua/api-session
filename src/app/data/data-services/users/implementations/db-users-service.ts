@@ -41,8 +41,8 @@ export class DbUsersService implements UsersService {
     throw "NotImp";
   }
 
-  delete(id: string): Promise<void> {
-    throw "NotImp";
+  async delete(id: string): Promise<void> {
+    await this.DB.result('DELETE FROM public."user" WHERE id = $1', [id]);
   }
 
 }
