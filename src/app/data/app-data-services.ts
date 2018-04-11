@@ -10,6 +10,6 @@ export class AppDataServices {
 
   constructor() {
     this.usersService = new DbUsersService(PostgreConnection.DB);
-    this.tokensService = new JwtTokensService();
+    this.tokensService = new JwtTokensService(PostgreConnection.DB);
   }
 }

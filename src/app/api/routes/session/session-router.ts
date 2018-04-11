@@ -16,6 +16,7 @@ export class SessionRouter extends RestRouter {
 
   initRoutes() {
     this.router.post('/', this.wrapRouteFn(this.sessionController, this.sessionController.create));
+    this.router.post('/refreshToken', this.wrapRouteFn(this.sessionController, this.sessionController.refreshToken));
     this.router.all('/', this.wrapRouteFn(this.sessionController, this.sessionController.throwMethodNotAllowedError));
   }
 }
