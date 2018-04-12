@@ -1,7 +1,7 @@
 import { Model } from './model';
-import { Validator } from '../../common/validation/validator';
-import { ValidatorError } from '../../common/validation/validator-error';
-import { Validatable } from '../../common/validation/validatable';
+import { Validator } from '../common/validation/validator';
+import { ValidatorError } from '../common/validation/validator-error';
+import { Validatable } from 'src/app/common/validation/validatable';
 
 export class User extends Model implements Validatable {
 

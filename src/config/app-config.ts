@@ -1,4 +1,4 @@
-import { StringUtils } from '../utils/string-utils';
+import { StringUtils } from '../app/utils/string-utils';
 
 export class AppConfig {
   // required environment variables

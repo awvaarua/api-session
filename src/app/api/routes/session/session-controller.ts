@@ -1,7 +1,6 @@
 import { RestController } from '../../../common/rest/rest-controller';
 import { LoggerFactory, Logger } from '../../../common/logging/logger-factory';
 import { UsersService } from 'src/app/data/data-services/users/users-service';
-import { User } from 'src/app/data/models/user';
 import { SessionManager } from 'src/app/managers/session/session-manager';
 import { InvalidUserPassException, InvalidToken } from '../../../common/exceptions/exceptions';
 

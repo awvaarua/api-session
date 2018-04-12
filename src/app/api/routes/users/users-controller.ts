@@ -1,8 +1,7 @@
-import { User } from '../../../data/models/user';
-import { UsersService } from '../../../data/data-services/users/users-service';
+import { User } from '../../../models/user';
 import { RestController } from '../../../common/rest/rest-controller';
 import { LoggerFactory, Logger } from '../../../common/logging/logger-factory';
-import { UserPassword } from '../../../data/models/user-password';
+import { UserPassword } from '../../../models/user-password';
 import { UserManager } from 'src/app/managers/user/user-manager';
 
 export class UsersController extends RestController {

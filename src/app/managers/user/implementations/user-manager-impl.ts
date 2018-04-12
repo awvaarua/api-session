@@ -1,6 +1,6 @@
 import { UserManager } from '../user-manager';
-import { User } from '../../../data/models/user';
-import { UserPassword } from '../../../data/models/user-password';
+import { User } from '../../../models/user';
+import { UserPassword } from '../../../models/user-password';
 import { UsersService } from '../../../data/data-services/users/users-service';
 
 export class UserManagerImpl implements UserManager {

@@ -1,5 +1,5 @@
-import { User } from '../../data/models/user';
-import { UserPassword } from '../../data/models/user-password';
+import { User } from '../../models/user';
+import { UserPassword } from '../../models/user-password';
 
 export interface UserManager {
   getAll(): Promise<Array<User>>;

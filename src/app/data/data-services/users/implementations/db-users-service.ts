@@ -1,8 +1,8 @@
-import { User } from '../../../models/user';
+import { User } from '../../../../models/user';
 import { UsersService } from '../users-service';
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
-import { UserPassword } from '../../../models/user-password';
+import { UserPassword } from '../../../../models/user-password';
 import { BcryptUtils } from '../../../../utils/bcrypt-utils';
 
 export class DbUsersService implements UsersService {

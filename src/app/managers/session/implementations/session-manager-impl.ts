@@ -1,9 +1,9 @@
 import { SessionManager } from '../session-manager';
 import { UsersService } from '../../../data/data-services/users/users-service';
 import { TokensService } from '../../../data/data-services/tokens/tokens-service';
-import { Token } from '../../../data/models/token';
-import { RefreshToken } from 'src/app/data/models/refresh-token';
-import { User } from '../../../data/models/user';
+import { Token } from '../../../models/token';
+import { RefreshToken } from '../../../models/refresh-token';
+import { User } from '../../../models/user';
 
 export class SessionManagerImpl implements SessionManager {
 

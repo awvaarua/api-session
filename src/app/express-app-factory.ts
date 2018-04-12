@@ -1,5 +1,5 @@
 import { Express, Router, RequestHandler, ErrorRequestHandler } from 'express';
-import { AppConfig } from './config/app-config';
+import { AppConfig } from 'src/config/app-config';
 import express = require('express');
 import bodyParser = require('body-parser');
 import morgan = require('morgan');

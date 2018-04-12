@@ -1,12 +1,12 @@
 import { TokensService } from '../tokens-service';
 import { UsersService } from '../../users/users-service';
-import { User } from '../../../models/user';
-import { Token } from '../../../models/token';
+import { User } from '../../../../models/user';
+import { Token } from '../../../../models/token';
 import * as JWT from 'jsonwebtoken';
 import * as randtoken from 'rand-token';
 import { IDatabase } from 'pg-promise';
 import { token } from 'morgan';
-import { RefreshToken } from '../../../models/refresh-token';
+import { RefreshToken } from '../../../../models/refresh-token';
 import { InvalidToken } from '../../../../common/exceptions/exceptions';
 
 const SECRET = 'VWXED;FF&;`sBPpAN3DjWuy9V"*b3rRYOrpG{352T=>j`f`68m7&B3e1L~84wZ(';
