@@ -3,7 +3,7 @@ import 'core-js/library';
 import { Logger, LoggerFactory } from './common/logging/logger-factory';
 import { Express, Router } from 'express';
 import { AppConfig } from '../config/app-config';
-import { AppDataServices } from './data/app-data-services';
+import { AppDataServices } from './infrastructure/app-data-services';
 import { ExpressAppFactory } from './express-app-factory';
 import { ApiRouterFactory } from './api/api-router-factory';
 import { RestErrorMiddleware } from './common/rest/middleware/rest-error-middleware';

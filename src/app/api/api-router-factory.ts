@@ -1,6 +1,6 @@
 import express = require('express');
 import { Router } from 'express';
-import { AppDataServices } from '../data/app-data-services';
+import { AppDataServices } from '../infrastructure/app-data-services';
 import { UsersRouter } from './routes/users/users-router';
 import { SessionRouter } from './routes/session/session-router';
 import { Logger, LoggerFactory } from '../common/logging/logger-factory';

@@ -1,6 +1,6 @@
 import { SessionManager } from '../session-manager';
-import { UsersService } from '../../../data/data-services/users/users-service';
-import { TokensService } from '../../../data/data-services/tokens/tokens-service';
+import { UsersService } from '../../../infrastructure/data-services/users/users-service';
+import { TokensService } from '../../../infrastructure/data-services/tokens/tokens-service';
 import { Token } from '../../../models/token';
 import { RefreshToken } from '../../../models/refresh-token';
 import { User } from '../../../models/user';

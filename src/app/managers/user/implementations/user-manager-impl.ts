@@ -1,7 +1,7 @@
 import { UserManager } from '../user-manager';
 import { User } from '../../../models/user';
 import { UserPassword } from '../../../models/user-password';
-import { UsersService } from '../../../data/data-services/users/users-service';
+import { UsersService } from '../../../infrastructure/data-services/users/users-service';
 
 export class UserManagerImpl implements UserManager {
 
@@ -31,5 +31,5 @@ export class UserManagerImpl implements UserManager {
   async delete(id: string): Promise<void> {
     return await this.usersService.delete(id);
   }
-  
+
 }
