@@ -1,6 +1,6 @@
 import { RestRouter } from '../../../common/rest/rest-router';
 import { UsersController } from './users-controller';
-import { UsersService } from '../../../data/data-services/users/users-service';
+import { UsersService } from '../../../infrastructure/data-services/users/users-service';
 import { UserManager } from 'src/app/managers/user/user-manager';
 
 export class UsersRouter extends RestRouter {
