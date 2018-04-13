@@ -4,6 +4,7 @@ import { TokensService } from '../../../infrastructure/data-services/tokens/toke
 import { Token } from '../../../models/token';
 import { RefreshToken } from '../../../models/refresh-token';
 import { User } from '../../../models/user';
+import { UnauthorizedError } from '../../../common/rest/errors/unauthorized-error';
 
 export class SessionManagerImpl implements SessionManager {
 
@@ -12,7 +13,7 @@ export class SessionManagerImpl implements SessionManager {
 
     async create(name: string, password: string): Promise<Token> {
         const user = await this.usersService.getByName(name, password);
-        if (!user) throw 'bad_user_or_password';
+        if (!user) throw new UnauthorizedError('invalid_user_or_password');
         return await this.tokensService.create(user);
     }
 
