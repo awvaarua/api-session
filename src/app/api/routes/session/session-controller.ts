@@ -1,7 +1,7 @@
 import { RestController } from '../../../common/rest/rest-controller';
 import { LoggerFactory, Logger } from '../../../common/logging/logger-factory';
-import { UsersService } from 'src/app/data/data-services/users/users-service';
-import { SessionManager } from 'src/app/managers/session/session-manager';
+import { UsersService } from '../../../infrastructure/data-services/users/users-service';
+import { SessionManager } from '../../../managers/session/session-manager';
 import { InvalidUserPassException, InvalidToken } from '../../../common/exceptions/exceptions';
 
 export class SessionController extends RestController {
