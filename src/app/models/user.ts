@@ -1,17 +1,16 @@
 import { Model } from './model';
-import { Validator } from '../../common/validation/validator';
-import { ValidatorError } from '../../common/validation/validator-error';
-import { Validatable } from '../../common/validation/validatable';
+import { Validator } from '../common/validation/validator';
+import { ValidatorError } from '../common/validation/validator-error';
+import { Validatable } from 'src/app/common/validation/validatable';
 
 export class User extends Model implements Validatable {
-  public firstName: string;
-  public lastName: string;
+
+  public name: string;
   public email: string;
 
   constructor(data: any) {
     super(data.id);
-    this.firstName = data.firstName;
-    // this.lastName = data.lastName;
+    this.name = data.name;
     this.email = data.email;
   }
 
@@ -24,24 +23,19 @@ export class User extends Model implements Validatable {
   toJSON(): any {
     return {
       id: this.id,
-      firstName: this.firstName,
-      lastName: this.lastName,
+      name: this.name,
       email: this.email
     };
   }
 
   static readonly MODEL_CONSTRAINTS: any = {
-    firstName: {
+    name: {
       required: true,
       notNull: true,
       length: {
         minimum: 2,
         message: 'must be at least 2 characters.'
       }
-    },
-    lastName: {
-      required: true,
-      notNull: true
     },
     email: {
       required: true,

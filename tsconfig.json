@@ -17,7 +17,9 @@
         "typeRoots": [
           "./node_modules/@types",
           "./src/@types_local"
-        ]
+        ],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "include": [
         "src/app/app.ts"

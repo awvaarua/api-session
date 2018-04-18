@@ -20,7 +20,13 @@ export class RestController {
 
   internalServerError(res: Response, item: any, statusCode: number = 500): Response {
     const response = new RestResponse(null, item);
-    return res.status(statusCode).json(this.respond);
+    return res.status(statusCode).json(response.toJSON());
+  }
+
+  unauthorized(res: Response, item: any, statusCode: number = 401): Response {
+    console.log(item);
+    const response = new RestResponse(null, item);
+    return res.status(statusCode).json(response.toJSON());
   }
 
   validateModel(model: Validatable): void {
