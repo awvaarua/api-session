@@ -1,0 +1,23 @@
+{
+  "apps" : [{
+    // Application #1
+    "name"        : "session-api",
+    "script"      : "app.js",
+    "watch"       : true,
+    "merge_logs"  : true,
+    "cwd"         : "./build/app",
+    "env": {
+      "NODE_ENV": "development",
+    },
+    "env_production" : {
+       "NODE_ENV": "production",
+       "PORT": 3000,
+       "LOG_LEVEL": "info",
+       "SERVE_STATIC": false
+    },
+    "env_staging" : {
+       "NODE_ENV" : "staging",
+       "TEST"     : true
+    }
+  }]
+}
